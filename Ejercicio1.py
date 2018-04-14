@@ -12,6 +12,8 @@ a = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
+cant_corridas = 20
+
 #arreglo poblacion inicial
 def generarPoblacionInicial(a):
     for i in range(10):
@@ -98,39 +100,54 @@ def mutacion(crom):
     else: return crom
 
 
+class Corrida():
+    pass
+
+def generarExcel(corridas):
+    style0 = xlwt.easyxf('font: name Times New Roman, colour black, bold on')
+    wb = xlwt.Workbook()
+    ws = wb.add_sheet('Ejercicio1', cell_overwrite_ok=True)
+    ws.write(0, 0, 'Máximos', style0)
+    ws.write(0, 1, 'Mínimos', style0)
+    ws.write(0, 2, 'Promedios', style0)
+    ws.write(0, 3, 'Cromosomas', style0)
+    i = 0
+    for corrida in corridas:
+        ws.write(i + 1, 0, corrida.maximo, style0)
+        ws.write(i + 1, 1, corrida.minimo, style0)
+        ws.write(i + 1, 2, corrida.prom_obj, style0)
+        ws.write(i + 1, 3, str(a[corrida.indiceMax]), style0)
+        i = i + 1
+        wb.save('algGen.xls')
+
 
 
 
 a=generarPoblacionInicial(a)
-#generar el excel
-style0 = xlwt.easyxf('font: name Times New Roman, colour black, bold on')
-wb = xlwt.Workbook()
-ws = wb.add_sheet('Ejercicio1',cell_overwrite_ok=True)
-ws.write(0,0,'maximos',style0)
-ws.write(0,1,'minimos',style0)
-ws.write(0,2,'promedios',style0)
-ws.write(0,3,'cromosomas',style0)
-for i in range(20):
-    decimales=getDecimal(a)
-    objetivos=getObjetivos(decimales)
-    fitness=getFitness(objetivos)
-    acumulado=getAcumulado(fitness)
-    maximo=max(objetivos)
-    minimo=min(objetivos)
-    indiceMax=objetivos.index(max(objetivos))
-    prom_obj = sum(objetivos)/len(objetivos)
-    ws.write(i+1,0,maximo,style0)
-    ws.write(i+1,1,minimo,style0)
-    ws.write(i+1,2,prom_obj,style0)
-    ws.write(i+1,3,str(a[indiceMax]),style0)
-    cromosoma=[]
+corridas = []
+
+for i in range(cant_corridas):
+    corrida = Corrida()
+    corrida.decimales = getDecimal(a)
+    corrida.objetivos = getObjetivos(corrida.decimales)
+    corrida.fitness = getFitness(corrida.objetivos)
+    corrida.acumulado = getAcumulado(corrida.fitness)
+    corrida.maximo = max(corrida.objetivos)
+    corrida.minimo = min(corrida.objetivos)
+    corrida.indiceMax = corrida.objetivos.index(max(corrida.objetivos))
+    corrida.prom_obj = sum(corrida.objetivos) / len(corrida.objetivos)
+
+    corridas.append(corrida)
+
+    cromosoma = []
     for k in range(10):
-        cromosoma.append(seleccionarCromosoma(acumulado))
-    a[cromosoma[0]],a[cromosoma[1]]=crossover(a[cromosoma[0]],a[cromosoma[1]])
-    a[cromosoma[2]],a[cromosoma[3]]=crossover(a[cromosoma[2]],a[cromosoma[3]])
-    a[cromosoma[4]],a[cromosoma[5]]=crossover(a[cromosoma[4]],a[cromosoma[5]])
-    a[cromosoma[6]],a[cromosoma[7]]=crossover(a[cromosoma[6]],a[cromosoma[7]])
-    a[cromosoma[8]],a[cromosoma[9]]=crossover(a[cromosoma[8]],a[cromosoma[9]])
+        cromosoma.append(seleccionarCromosoma(corrida.acumulado))
+    a[cromosoma[0]], a[cromosoma[1]] = crossover(a[cromosoma[0]], a[cromosoma[1]])
+    a[cromosoma[2]], a[cromosoma[3]] = crossover(a[cromosoma[2]], a[cromosoma[3]])
+    a[cromosoma[4]], a[cromosoma[5]] = crossover(a[cromosoma[4]], a[cromosoma[5]])
+    a[cromosoma[6]], a[cromosoma[7]] = crossover(a[cromosoma[6]], a[cromosoma[7]])
+    a[cromosoma[8]], a[cromosoma[9]] = crossover(a[cromosoma[8]], a[cromosoma[9]])
     for j in range(10):
-        a[cromosoma[j]]=mutacion(a[cromosoma[j]])
-wb.save('algGen')
+        a[cromosoma[j]] = mutacion(a[cromosoma[j]])
+
+generarExcel(corridas)
