@@ -1,60 +1,62 @@
 import random
 import xlwt
 
-a = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+a = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ]
 
 cant_corridas = 20
 
-#arreglo poblacion inicial
+
+# arreglo poblacion inicial
 def generarPoblacionInicial(a):
     for i in range(10):
         for j in range(30):
-            a[i][j] = random.randint(0,1)
+            a[i][j] = random.randint(0, 1)
     return a
 
 
-#genera arreglo con decimales
+# genera arreglo con decimales
 def getDecimal(arreglo):
-    numerosDecimales=[]
-    for i in range (10):
-        numero=0
-        for indice , num in enumerate(arreglo[i][::-1]):
+    numerosDecimales = []
+    for i in range(10):
+        numero = 0
+        for indice, num in enumerate(arreglo[i][::-1]):
             numero = numero + (2**indice) * num
         numerosDecimales.append(numero)
-    return(numerosDecimales)
+    return numerosDecimales
 
 
-#define funcion objetivo
+# define funcion objetivo
 def objetivo(x):
     return (x/((2**30)-1))**2
 
-#genera arreglo con los valores de la funcion objetivo
+
+# genera arreglo con los valores de la funcion objetivo
 def getObjetivos(decimales):
-    objetivos=[]
+    objetivos = []
     for elemento in decimales:
         objetivos.append(objetivo(elemento))
     return objetivos
 
 
-
-#genera arreglo de fitness
+# genera arreglo de fitness
 def getFitness(objetivos):
     fitness = []
+    suma = sum(objetivos)
     for e in objetivos:
-        fitness.append(e/sum(objetivos))
+        fitness.append(e/suma)
     return fitness
 
 
-#generar acumulado
+# generar acumulado
 def getAcumulado(fitness):
     acumulado = []
     for n in range(10):
@@ -65,44 +67,49 @@ def getAcumulado(fitness):
     return acumulado
 
 
-#seleccion de cromosomas
+# seleccion de cromosomas
 def seleccionarCromosoma(acumulado):
-    ran=random.random()
+    ran = random.random()
     for index, n in enumerate(acumulado):
         if ran < n:
             return index
 
 
-#funcion de crossover
-def crossover(crom1,crom2):
-    prob=random.random()
-    if prob<=0.75:
-        corte=random.randint(0,29)
-        parteIntercambiale=crom1[corte:]
-        j=0
+# funcion de crossover
+def crossover(crom1, crom2):
+    prob = random.random()
+    if prob <= 0.75:
+        corte = random.randint(0, 29)
+        parteIntercambiale = crom1[corte:]
+        j = 0
         for i in range(corte, 29):
-            crom1[i]=crom2[i]
-            crom2[i]=parteIntercambiale[j]
-            j=j+1
-        return crom1,crom2
-    else: return crom1,crom2
+            crom1[i] = crom2[i]
+            crom2[i] = parteIntercambiale[j]
+            j = j+1
+        return crom1, crom2
+    else:
+        return crom1, crom2
 
-#mutacion
+
+# mutacion
 def mutacion(crom):
-    prob=random.random()
-    if prob<=0.05:
-        gen=random.randint(0,29)
-        if crom[gen]==0:
-            crom[gen]=1
+    prob = random.random()
+    if prob <= 0.05:
+        gen = random.randint(0, 29)
+        if crom[gen] == 0:
+            crom[gen] = 1
         else:
-            crom[gen]=0
+            crom[gen] = 0
         return crom
-    else: return crom
+    else:
+        return crom
 
 
-class Corrida():
+class Corrida:
     pass
 
+
+# genera archivo .xls con información de cada corrida
 def generarExcel(corridas):
     style0 = xlwt.easyxf('font: name Times New Roman, colour black, bold on')
     wb = xlwt.Workbook()
@@ -121,9 +128,8 @@ def generarExcel(corridas):
         wb.save('algGen.xls')
 
 
-
-
-a=generarPoblacionInicial(a)
+# programa principal
+a = generarPoblacionInicial(a)
 corridas = []
 
 for i in range(cant_corridas):
