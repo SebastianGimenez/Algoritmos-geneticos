@@ -1,16 +1,6 @@
 import random
 import xlwt
 
-a = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ]
 
 cant_corridas = 20
 
@@ -123,14 +113,33 @@ def generarExcel(corridas):
         ws.write(i + 1, 0, corrida.maximo, style0)
         ws.write(i + 1, 1, corrida.minimo, style0)
         ws.write(i + 1, 2, corrida.prom_obj, style0)
-        ws.write(i + 1, 3, str(a[corrida.indiceMax]), style0)
+        ws.write(i + 1, 3, str(corrida.poblacion[corrida.indiceMax]), style0)
+        print(corrida.poblacion)
         i = i + 1
         wb.save('algGen.xls')
 
 
 # programa principal
+
+a = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ]
 a = generarPoblacionInicial(a)
 corridas = []
+style0 = xlwt.easyxf('font: name Times New Roman, colour black, bold on')
+wb = xlwt.Workbook()
+ws = wb.add_sheet('Ejercicio1', cell_overwrite_ok=True)
+ws.write(0, 0, 'Máximos', style0)
+ws.write(0, 1, 'Mínimos', style0)
+ws.write(0, 2, 'Promedios', style0)
+ws.write(0, 3, 'Cromosomas', style0)
 
 for i in range(cant_corridas):
     corrida = Corrida()
@@ -143,7 +152,6 @@ for i in range(cant_corridas):
     corrida.indiceMax = corrida.objetivos.index(max(corrida.objetivos))
     corrida.prom_obj = sum(corrida.objetivos) / len(corrida.objetivos)
 
-    corridas.append(corrida)
 
     cromosoma = []
     for k in range(10):
@@ -155,5 +163,15 @@ for i in range(cant_corridas):
     a[cromosoma[8]], a[cromosoma[9]] = crossover(a[cromosoma[8]], a[cromosoma[9]])
     for j in range(10):
         a[cromosoma[j]] = mutacion(a[cromosoma[j]])
+    corrida.poblacion = list(a)
 
-generarExcel(corridas)
+    ws.write(i + 1, 0, corrida.maximo, style0)
+    ws.write(i + 1, 1, corrida.minimo, style0)
+    ws.write(i + 1, 2, corrida.prom_obj, style0)
+    ws.write(i + 1, 3, str(a[corrida.indiceMax]), style0)
+    print(corrida.poblacion)
+
+
+    corridas.append(corrida)
+wb.save('algGen.xls')
+#generarExcel(corridas)
