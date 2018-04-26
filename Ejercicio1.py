@@ -82,9 +82,11 @@ def crossover(crom1, crom2):
 
 
 # mutacion
-def mutacion(crom):
+def mutacion(crom, corrida):
     prob = random.random()
+    corrida.hubo_mutacion = False
     if prob <= 0.05:
+        corrida.hubo_mutacion = True
         gen = random.randint(0, 29)
         if crom[gen] == 0:
             crom[gen] = 1
@@ -140,6 +142,7 @@ ws.write(0, 0, 'Máximos', style0)
 ws.write(0, 1, 'Mínimos', style0)
 ws.write(0, 2, 'Promedios', style0)
 ws.write(0, 3, 'Cromosomas', style0)
+ws.write(0, 4, 'Mutación', style0)
 
 for i in range(cant_corridas):
     corrida = Corrida()
@@ -161,14 +164,19 @@ for i in range(cant_corridas):
     a[cromosoma[4]], a[cromosoma[5]] = crossover(a[cromosoma[4]], a[cromosoma[5]])
     a[cromosoma[6]], a[cromosoma[7]] = crossover(a[cromosoma[6]], a[cromosoma[7]])
     a[cromosoma[8]], a[cromosoma[9]] = crossover(a[cromosoma[8]], a[cromosoma[9]])
+
+
     for j in range(10):
-        a[cromosoma[j]] = mutacion(a[cromosoma[j]])
+        #a[cromosoma[j]] = mutacion(a[cromosoma[j]], corrida)
+        crom = random.randint(0, 9)
+        a[crom] = mutacion(a[crom], corrida)
     corrida.poblacion = list(a)
 
     ws.write(i + 1, 0, corrida.maximo, style0)
     ws.write(i + 1, 1, corrida.minimo, style0)
     ws.write(i + 1, 2, corrida.prom_obj, style0)
     ws.write(i + 1, 3, str(a[corrida.indiceMax]), style0)
+    ws.write(i + 1, 4, "Si" if corrida.hubo_mutacion else "No")
     print(corrida.poblacion)
 
 
