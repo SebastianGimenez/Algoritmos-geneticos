@@ -41,7 +41,7 @@ def correr(variante = False):
     valor_maximo = 0
 
     # Recorrer todas las combinaciones posibles de objetos y guardar la mochila que tiene el mejor valor
-    for size in range(1, 11):
+    for size in range(1, len(arreglo_inicial) + 1):
         for combinacion in itertools.combinations(arreglo_inicial, size):
             mochila = mochila_module.Mochila(variante)
             mochila.agregar_objetos(combinacion, True)
