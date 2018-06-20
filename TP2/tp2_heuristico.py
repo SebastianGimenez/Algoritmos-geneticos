@@ -7,7 +7,7 @@ import objeto as objeto_module
 
 def obtener_arreglo_inicial(variante = False):
     arreglo_inicial = []
-    arreglo_inicial.append(objeto_module.Objeto(1, 150, 120))
+    arreglo_inicial.append(objeto_module.Objeto(1, 150, 20))
     arreglo_inicial.append(objeto_module.Objeto(2, 325, 40))
     arreglo_inicial.append(objeto_module.Objeto(3, 600, 50))
     arreglo_inicial.append(objeto_module.Objeto(4, 805, 36))
@@ -38,6 +38,10 @@ def correr(variante = False):
     # Ordenar por el indice que utilizamos como criterio
     ordenado = sorted(obtener_arreglo_inicial(variante), key=lambda obj: obj.indice, reverse=True)
 
+    for i in ordenado:
+        print(i.indice)
+        print(i.volumen)
+        print(i.valor)
     # Crear objeto mochila
     mochila = mochila_module.Mochila(variante)
 

@@ -7,7 +7,7 @@ import objeto as objeto_module
 
 def obtener_arreglo_inicial(variante = False):
     arreglo_inicial = []
-    arreglo_inicial.append(objeto_module.Objeto(1, 150, 120))
+    arreglo_inicial.append(objeto_module.Objeto(1, 150, 20))
     arreglo_inicial.append(objeto_module.Objeto(2, 325, 40))
     arreglo_inicial.append(objeto_module.Objeto(3, 600, 50))
     arreglo_inicial.append(objeto_module.Objeto(4, 805, 36))
@@ -39,14 +39,15 @@ def correr(variante = False):
 
     # Inicializar
     valor_maximo = 0
+    mejor_mochila = mochila_module.Mochila(variante)
 
     # Recorrer todas las combinaciones posibles de objetos y guardar la mochila que tiene el mejor valor
     for size in range(1, len(arreglo_inicial) + 1):
         for combinacion in itertools.combinations(arreglo_inicial, size):
             mochila = mochila_module.Mochila(variante)
             mochila.agregar_objetos(combinacion, True)
-            if mochila.valor_acumulado > valor_maximo and mochila.volumen_disponible() >= 0:
-                mejor_mochila = copy.copy(mochila)
+            if mochila.valor_acumulado > mejor_mochila.valor_acumulado and mochila.volumen_disponible() >= 0:
+                mejor_mochila = (mochila)
 
     # Guardar el tiempo al final
     end = time.time()

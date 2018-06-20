@@ -27,4 +27,3 @@ while option != 0:
 
     print('')
     print('')
-    input("Presione enter para repetir...")
