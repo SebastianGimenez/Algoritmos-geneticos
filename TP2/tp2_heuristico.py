@@ -38,10 +38,6 @@ def correr(variante = False):
     # Ordenar por el indice que utilizamos como criterio
     ordenado = sorted(obtener_arreglo_inicial(variante), key=lambda obj: obj.indice, reverse=True)
 
-    for i in ordenado:
-        print(i.indice)
-        print(i.volumen)
-        print(i.valor)
     # Crear objeto mochila
     mochila = mochila_module.Mochila(variante)
 
