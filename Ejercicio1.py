@@ -167,9 +167,7 @@ for i in range(cant_corridas):
 
 
     for j in range(10):
-        #a[cromosoma[j]] = mutacion(a[cromosoma[j]], corrida)
-        crom = random.randint(0, 9)
-        a[crom] = mutacion(a[crom], corrida)
+        a[j] = mutacion(a[j], corrida)
     corrida.poblacion = list(a)
 
     ws.write(i + 1, 0, corrida.maximo, style0)
