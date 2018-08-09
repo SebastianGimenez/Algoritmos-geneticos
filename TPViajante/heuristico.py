@@ -75,7 +75,8 @@ distancias = [[
         799, 1047, 1527, 1681, 789, 1311, 1019, 479, 1030, 1624, 327, 1526, 1294, 1391, 1562, 1855, 1790, 1141, 882, 477, 1446, 1605, 0
 ]]
 
-capital_inicial = 0
+capitalini=input("ingrese el nombre de la ciudad de salida: ")
+capital_inicial = capitales.index(capitalini)
 recorrido = [capital_inicial]
 
 capital_actual = capital_inicial
@@ -89,8 +90,9 @@ while recorrido.__len__() != capitales.__len__():
         dist = distancias_actual[i]
         if dist < dist_minima and i not in recorrido:
             dist_minima = dist
-            dist_total += distancias[ind_minimo][i]
             ind_minimo = i
+
+    dist_total += dist_minima
     recorrido.append(ind_minimo)
     distancias_actual = copy.deepcopy(distancias[ind_minimo])
 
@@ -98,3 +100,5 @@ recorrido.append(capital_inicial)
 dist_total += distancias[ind_minimo][capital_inicial]
 
 print(dist_total)
+for i in range (25):
+    print(capitales[recorrido[i]])
