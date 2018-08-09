@@ -1,4 +1,5 @@
 import copy
+import random
 
 capitales = ['Buenos Aires',
              'Cordoba',
@@ -74,8 +75,11 @@ distancias = [[
     ],[
         799, 1047, 1527, 1681, 789, 1311, 1019, 479, 1030, 1624, 327, 1526, 1294, 1391, 1562, 1855, 1790, 1141, 882, 477, 1446, 1605, 0
 ]]
-
-capitalini=input("ingrese el nombre de la ciudad de salida: ")
+opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Encontrar recorrido minimo\n")
+if(opcion == 1):
+    capitalini = input("ingrese el nombre de la ciudad de salida: ")
+else:
+    capitalini = random.choice(capitales)
 capital_inicial = capitales.index(capitalini)
 recorrido = [capital_inicial]
 
@@ -99,6 +103,7 @@ while recorrido.__len__() != capitales.__len__():
 recorrido.append(capital_inicial)
 dist_total += distancias[ind_minimo][capital_inicial]
 
-print(dist_total)
+print "Distancia total recorrida: ", dist_total
+print("Recorrido:\n")
 for i in range (25):
     print(capitales[recorrido[i]])
