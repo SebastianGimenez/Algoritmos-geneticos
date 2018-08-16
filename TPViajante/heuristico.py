@@ -75,35 +75,56 @@ distancias = [[
     ],[
         799, 1047, 1527, 1681, 789, 1311, 1019, 479, 1030, 1624, 327, 1526, 1294, 1391, 1562, 1855, 1790, 1141, 882, 477, 1446, 1605, 0
 ]]
-opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Encontrar recorrido minimo\n")
-if(opcion == 1):
+
+
+def buscaRuta(capitalini,imprimir = False):
+    capital_inicial = capitales.index(capitalini)
+    recorrido = [capital_inicial]
+
+    capital_actual = capital_inicial
+
+    distancias_actual = copy.deepcopy(distancias[capital_actual])
+
+    dist_total = 0
+    while recorrido.__len__() != capitales.__len__():
+        dist_minima = 1000000
+        for i in range(0, distancias_actual.__len__()):
+            dist = distancias_actual[i]
+            if dist < dist_minima and i not in recorrido:
+                dist_minima = dist
+                ind_minimo = i
+
+        dist_total += dist_minima
+        recorrido.append(ind_minimo)
+        distancias_actual = copy.deepcopy(distancias[ind_minimo])
+
+    recorrido.append(capital_inicial)
+    dist_total += distancias[ind_minimo][capital_inicial]
+
+    if(imprimir):
+        print("Distancia total recorrida: ", dist_total)
+        print("Recorrido:\n")
+        for i in range(25):
+            print(capitales[recorrido[i]])
+    else:
+        return [dist_total,recorrido]
+
+
+opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Elegir ciudad aleatoria\n3-Obtener menor ruta\n")
+if(opcion == '1'):
     capitalini = input("ingrese el nombre de la ciudad de salida: ")
-else:
+    buscaRuta(capitalini,True)
+elif(opcion == '2'):
     capitalini = random.choice(capitales)
-capital_inicial = capitales.index(capitalini)
-recorrido = [capital_inicial]
-
-capital_actual = capital_inicial
-
-distancias_actual = copy.deepcopy(distancias[capital_actual])
-
-dist_total = 0
-while recorrido.__len__() != capitales.__len__():
-    dist_minima = 1000000
-    for i in range(0, distancias_actual.__len__()):
-        dist = distancias_actual[i]
-        if dist < dist_minima and i not in recorrido:
-            dist_minima = dist
-            ind_minimo = i
-
-    dist_total += dist_minima
-    recorrido.append(ind_minimo)
-    distancias_actual = copy.deepcopy(distancias[ind_minimo])
-
-recorrido.append(capital_inicial)
-dist_total += distancias[ind_minimo][capital_inicial]
-
-print "Distancia total recorrida: ", dist_total
-print("Recorrido:\n")
-for i in range (25):
-    print(capitales[recorrido[i]])
+    buscaRuta(capitalini,True)
+elif(opcion == '3'):
+    dist_min = 999999999999999
+    for capital in capitales:
+        busqueda = buscaRuta(capital)
+        if(busqueda[0] < dist_min):
+            dist_min = busqueda[0]
+            recorrido = busqueda[1]
+    print("Distancia minima: ",dist_min)
+    print("Recorrido:\n")
+    for i in range(25):
+        print(capitales[recorrido[i]])
