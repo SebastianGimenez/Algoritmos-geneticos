@@ -76,6 +76,31 @@ distancias = [[
         799, 1047, 1527, 1681, 789, 1311, 1019, 479, 1030, 1624, 327, 1526, 1294, 1391, 1562, 1855, 1790, 1141, 882, 477, 1446, 1605, 0
 ]]
 
+# funcion de crossover
+def crossover(crom1, crom2):
+    prob = random.random()
+    if prob <= 0.75:
+        crom_nuevo_1 = [None]*24
+        crom_nuevo_2 = [None]*24
+        i = 0
+        crom_nuevo_1[i] = crom1[i]
+        while((crom2[i] in crom1) & (crom2[i] not in crom_nuevo_1)):
+            i = crom1.index(crom2[i])
+            crom_nuevo_1[i] = crom1[i]
+        for gen in crom2:
+            if(crom_nuevo_1[crom2.index(gen)] is None):
+                crom_nuevo_1[crom2.index(gen)] = gen
+        i = 0
+        crom_nuevo_2[i] = crom2[i]
+        while((crom1[i] in crom2) & (crom1[i] not in crom_nuevo_2)):
+            i = crom2.index(crom1[i])
+            crom_nuevo_2[i] = crom2[i]
+        for gen in crom1:
+            if(crom_nuevo_2[crom1.index(gen)] is None):
+                crom_nuevo_2[crom1.index(gen)] = gen
+        return crom_nuevo_1,crom_nuevo_2
+    else:
+        return crom1, crom2
 
 def buscaRuta(capitalini,imprimir = False):
     capital_inicial = capitales.index(capitalini)
@@ -109,7 +134,7 @@ def buscaRuta(capitalini,imprimir = False):
     else:
         return [dist_total,recorrido]
 
-
+# Principal
 opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Elegir ciudad aleatoria\n3-Obtener menor ruta\n")
 if(opcion == '1'):
     capitalini = input("ingrese el nombre de la ciudad de salida: ")
