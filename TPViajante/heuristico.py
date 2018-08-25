@@ -104,7 +104,7 @@ def crossover(crom1, crom2):
 
 def mutacion(crom):
     prob = random.random()
-    if prob <= 1:
+    if prob <= 0.05:
         gen1 = random.randint(0, 23)
         gen2 = gen1
         while gen2 == gen1:
