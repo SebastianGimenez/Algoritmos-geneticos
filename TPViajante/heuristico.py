@@ -102,6 +102,20 @@ def crossover(crom1, crom2):
     else:
         return crom1, crom2
 
+def mutacion(crom):
+    prob = random.random()
+    if prob <= 1:
+        gen1 = random.randint(0, 23)
+        gen2 = gen1
+        while gen2 == gen1:
+            gen2 = random.randint(0, 23)
+        gen = crom[gen1]
+        crom[gen1] = crom[gen2]
+        crom[gen2] = gen
+        return crom
+    else:
+        return crom
+
 def buscaRuta(capitalini,imprimir = False):
     capital_inicial = capitales.index(capitalini)
     recorrido = [capital_inicial]
