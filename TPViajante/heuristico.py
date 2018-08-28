@@ -76,6 +76,122 @@ distancias = [[
         799, 1047, 1527, 1681, 789, 1311, 1019, 479, 1030, 1624, 327, 1526, 1294, 1391, 1562, 1855, 1790, 1141, 882, 477, 1446, 1605, 0
 ]]
 
+arreglo_inicial=[[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+
+
+
+#########################  Algoritmo Genetico  ##########################
+
+#funcion de generacion de poblacion inicial
+def gen_pob_ini(a):
+    for i in range(50):
+        for j in range(24):
+            bandera = True
+            while bandera:
+                num = random.randint(0, 24)
+                if num not in a[i]:
+                    a[i][j] = num
+                    bandera = False
+    for i in range(50):
+        for j in range(24):
+            a[i][j]=a[i][j]-1
+    return a
+
+#funcion objetivo
+def funcion_objetivo(a,distancias):
+    obj=[]
+    for i in range(50):
+        sum=0
+        for j in range(23):
+            #print(a[i][j],a[i][j+1])
+            #print(distancias[a[i][j]][a[i][j+1]])
+            sum = sum + distancias[a[i][j]][a[i][j+1]]
+            #print(sum)
+        sum = sum + distancias[a[i][23]][a[i][0]]
+        obj.append(sum)
+    return obj
+
+
+#funcion fitness
+def fitness(obj):
+    total=sum(obj)
+    #print(total)
+    fitness=[None]*50
+    for i in range(50):
+        fitness[i] = 1-(obj[i]/total)
+    #print(fitness)
+    total2=sum(fitness)
+    for i in range(50):
+        fitness[i] = (fitness[i]/total2)
+    #print(fitness)
+    return fitness
+
+#acumulado
+def acumulado(fitness):
+    acumulado = []
+    for n in range(50):
+        suma = 0
+        for i in range(n+1):
+            suma = suma + fitness[i]
+        acumulado.append(suma)
+    return acumulado
+
+#sleccion
+def seleccionarCromosoma(acumulado):
+    ran = random.random()
+    for index, n in enumerate(acumulado):
+        if ran < n:
+            return index
+
 # funcion de crossover
 def crossover(crom1, crom2):
     prob = random.random()
@@ -116,6 +232,42 @@ def mutacion(crom):
     else:
         return crom
 
+
+
+
+
+
+#principal geneticos
+def geneticos_resolucion():
+    a=gen_pob_ini(arreglo_inicial)
+
+
+    for i in range(200):
+        obj = funcion_objetivo(a, distancias)
+        fitness_ = fitness(obj)
+        acumulado_ = acumulado(fitness_)
+        indices_seleccionados=[]
+        for i in range(50):
+            indices_seleccionados.append(seleccionarCromosoma(acumulado_))
+        nueva_pob=copy.deepcopy(arreglo_inicial)
+        for i in range(0,50,2):
+           nueva_pob[i],nueva_pob[i+1] = crossover(a[indices_seleccionados[i]],a[indices_seleccionados[i+1]])
+        for j in range(50):
+            nueva_pob[j] = mutacion(nueva_pob[j])
+        a = copy.deepcopy(nueva_pob)
+    menor_nueva_pob=min(nueva_pob)
+    for i in range(24):
+        print(capitales[menor_nueva_pob[i]])
+    print(fitness_)
+    print(acumulado_)
+    print(obj)
+
+
+
+
+
+########################### Heuristico ###################################
+
 def buscaRuta(capitalini,imprimir = False):
     capital_inicial = capitales.index(capitalini)
     recorrido = [capital_inicial]
@@ -148,22 +300,30 @@ def buscaRuta(capitalini,imprimir = False):
     else:
         return [dist_total,recorrido]
 
+
+
 # Principal
-opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Elegir ciudad aleatoria\n3-Obtener menor ruta\n")
-if(opcion == '1'):
-    capitalini = input("ingrese el nombre de la ciudad de salida: ")
-    buscaRuta(capitalini,True)
-elif(opcion == '2'):
-    capitalini = random.choice(capitales)
-    buscaRuta(capitalini,True)
-elif(opcion == '3'):
-    dist_min = 999999999999999
-    for capital in capitales:
-        busqueda = buscaRuta(capital)
-        if(busqueda[0] < dist_min):
-            dist_min = busqueda[0]
-            recorrido = busqueda[1]
-    print("Distancia minima: ",dist_min)
-    print("Recorrido:\n")
-    for i in range(25):
-        print(capitales[recorrido[i]])
+
+opcion1 = input("Seleccione una opcion:\n1-Heuristico\n2-Algoritmos Geneticos\n")
+if (opcion1 == '1'):
+    opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Elegir ciudad aleatoria\n3-Obtener menor ruta\n")
+    if(opcion == '1'):
+        capitalini = input("ingrese el nombre de la ciudad de salida: ")
+        buscaRuta(capitalini,True)
+    elif(opcion == '2'):
+        capitalini = random.choice(capitales)
+        buscaRuta(capitalini,True)
+    elif(opcion == '3'):
+        dist_min = 999999999999999
+        for capital in capitales:
+            busqueda = buscaRuta(capital)
+            if(busqueda[0] < dist_min):
+                dist_min = busqueda[0]
+                recorrido = busqueda[1]
+        print("Distancia minima: ",dist_min)
+        print("Recorrido:\n")
+        for i in range(25):
+            print(capitales[recorrido[i]])
+else:
+    geneticos_resolucion()
+
