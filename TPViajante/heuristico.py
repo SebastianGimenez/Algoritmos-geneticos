@@ -246,14 +246,49 @@ def geneticos_resolucion():
         obj = funcion_objetivo(a, distancias)
         fitness_ = fitness(obj)
         acumulado_ = acumulado(fitness_)
-        indices_seleccionados=[]
-        for i in range(50):
+        indices_seleccionados = []
+
+        #####  ANTERIOR  ########
+        # for i in range(50):
+        #    indices_seleccionados.append(seleccionarCromosoma(acumulado_))
+        # nueva_pob=copy.deepcopy(arreglo_inicial)
+        # for i in range(0,50,2):
+        #  nueva_pob[i],nueva_pob[i+1] = crossover(a[indices_seleccionados[i]],a[indices_seleccionados[i+1]])
+        # for j in range(50):
+        #    nueva_pob[j] = mutacion(nueva_pob[j])
+
+        ###########################
+
+        ##########  ELITISMO    ##############
+        maximo1=max(obj)
+        obj2 = obj
+        obj2.remove(maximo1)
+        maximo2=max(obj2)
+        obj3=obj2
+        obj3.remove(maximo2)
+        maximo3=max(obj3)
+        obj4=obj3
+        obj4.remove(maximo3)
+        maximo4=max(obj4)
+        indiceMax1=obj.index(max(obj))
+        indiceMax2=obj.index(max(obj2))
+        indiceMax3 = obj.index(max(obj3))
+        indiceMax4 = obj.index(max(obj4))
+        indices_seleccionados.append(indiceMax1)
+        indices_seleccionados.append(indiceMax2)
+        indices_seleccionados.append(indiceMax3)
+        indices_seleccionados.append(indiceMax4)
+
+        for i in range(46):
             indices_seleccionados.append(seleccionarCromosoma(acumulado_))
         nueva_pob=copy.deepcopy(arreglo_inicial)
-        for i in range(0,50,2):
-           nueva_pob[i],nueva_pob[i+1] = crossover(a[indices_seleccionados[i]],a[indices_seleccionados[i+1]])
-        for j in range(50):
+        for i in range(4, 50, 2):
+         nueva_pob[i],nueva_pob[i+1] = crossover(a[indices_seleccionados[i]],a[indices_seleccionados[i+1]])
+        for j in range(4,50):
             nueva_pob[j] = mutacion(nueva_pob[j])
+
+        ################ FIN DE ELITISMO  ##################
+
         a = copy.deepcopy(nueva_pob)
     menor_nueva_pob=min(nueva_pob)
     for i in range(24):
