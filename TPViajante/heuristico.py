@@ -1,5 +1,6 @@
 import copy
 import random
+from os import system
 
 capitales = ['Buenos Aires',
              'Cordoba',
@@ -238,8 +239,8 @@ def mutacion(crom):
 
 
 #principal geneticos
-def geneticos_resolucion():
-    a=gen_pob_ini(arreglo_inicial)
+def geneticos_resolucion(elitismo=False):
+    a = gen_pob_ini(arreglo_inicial)
 
 
     for i in range(200):
@@ -248,54 +249,53 @@ def geneticos_resolucion():
         acumulado_ = acumulado(fitness_)
         indices_seleccionados = []
 
-        #####  ANTERIOR  ########
-        # for i in range(50):
-        #    indices_seleccionados.append(seleccionarCromosoma(acumulado_))
-        # nueva_pob=copy.deepcopy(arreglo_inicial)
-        # for i in range(0,50,2):
-        #  nueva_pob[i],nueva_pob[i+1] = crossover(a[indices_seleccionados[i]],a[indices_seleccionados[i+1]])
-        # for j in range(50):
-        #    nueva_pob[j] = mutacion(nueva_pob[j])
+        if(elitismo == False):
+            for i in range(50):
+                indices_seleccionados.append(seleccionarCromosoma(acumulado_))
+            nueva_pob=copy.deepcopy(arreglo_inicial)
+            for i in range(0,50,2):
+                nueva_pob[i],nueva_pob[i+1] = crossover(a[indices_seleccionados[i]],a[indices_seleccionados[i+1]])
+            for j in range(50):
+                nueva_pob[j] = mutacion(nueva_pob[j])
 
-        ###########################
+
 
         ##########  ELITISMO    ##############
-        maximo1=max(obj)
-        obj2 = obj
-        obj2.remove(maximo1)
-        maximo2=max(obj2)
-        obj3=obj2
-        obj3.remove(maximo2)
-        maximo3=max(obj3)
-        obj4=obj3
-        obj4.remove(maximo3)
-        maximo4=max(obj4)
-        indiceMax1=obj.index(max(obj))
-        indiceMax2=obj.index(max(obj2))
-        indiceMax3 = obj.index(max(obj3))
-        indiceMax4 = obj.index(max(obj4))
-        indices_seleccionados.append(indiceMax1)
-        indices_seleccionados.append(indiceMax2)
-        indices_seleccionados.append(indiceMax3)
-        indices_seleccionados.append(indiceMax4)
+        if (elitismo == True):
+            obj2 = copy.deepcopy(obj)
+            maximo1 = copy.deepcopy(min(obj2))
+            obj2.remove(maximo1)
+            maximo2 = copy.deepcopy(min(obj2))
+            obj2.remove(maximo2)
+            maximo3 = copy.deepcopy(min(obj2))
+            obj2.remove(maximo3)
+            maximo4 = copy.deepcopy(min(obj2))
+            indiceMax1 = obj.index(maximo1)
+            indiceMax2 = obj.index(maximo2)
+            indiceMax3 = obj.index(maximo3)
+            indiceMax4 = obj.index(maximo4)
+            nueva_pob = copy.deepcopy(arreglo_inicial)
+            nueva_pob[0] = copy.deepcopy(a[indiceMax1])
+            nueva_pob[1] = copy.deepcopy(a[indiceMax2])
+            nueva_pob[2] = copy.deepcopy(a[indiceMax3])
+            nueva_pob[3] = copy.deepcopy(a[indiceMax4])
+            for i in range(46):
+                indices_seleccionados.append(seleccionarCromosoma(acumulado_))
 
-        for i in range(46):
-            indices_seleccionados.append(seleccionarCromosoma(acumulado_))
-        nueva_pob=copy.deepcopy(arreglo_inicial)
-        for i in range(4, 50, 2):
-         nueva_pob[i],nueva_pob[i+1] = crossover(a[indices_seleccionados[i]],a[indices_seleccionados[i+1]])
-        for j in range(4,50):
-            nueva_pob[j] = mutacion(nueva_pob[j])
+            for i in range(4, 48, 2):
+                nueva_pob[i], nueva_pob[i+1] = crossover(a[indices_seleccionados[i-4]], a[indices_seleccionados[i-3]])
+            for j in range(4, 50):
+                nueva_pob[j] = mutacion(nueva_pob[j])
 
         ################ FIN DE ELITISMO  ##################
 
         a = copy.deepcopy(nueva_pob)
-    menor_nueva_pob=min(nueva_pob)
+    menor_nueva_pob = min(a)
+    print("distancia menor obtenida: ", min(obj), "\n")
     for i in range(24):
         print(capitales[menor_nueva_pob[i]])
-    print(fitness_)
-    print(acumulado_)
     print(obj)
+
 
 
 
@@ -333,32 +333,38 @@ def buscaRuta(capitalini,imprimir = False):
         for i in range(25):
             print(capitales[recorrido[i]])
     else:
-        return [dist_total,recorrido]
+        return [dist_total, recorrido]
 
 
 
 # Principal
-
-opcion1 = input("Seleccione una opcion:\n1-Heuristico\n2-Algoritmos Geneticos\n")
-if (opcion1 == '1'):
-    opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Elegir ciudad aleatoria\n3-Obtener menor ruta\n")
-    if(opcion == '1'):
-        capitalini = input("ingrese el nombre de la ciudad de salida: ")
-        buscaRuta(capitalini,True)
-    elif(opcion == '2'):
-        capitalini = random.choice(capitales)
-        buscaRuta(capitalini,True)
-    elif(opcion == '3'):
-        dist_min = 999999999999999
-        for capital in capitales:
-            busqueda = buscaRuta(capital)
-            if(busqueda[0] < dist_min):
-                dist_min = busqueda[0]
-                recorrido = busqueda[1]
-        print("Distancia minima: ",dist_min)
-        print("Recorrido:\n")
-        for i in range(25):
-            print(capitales[recorrido[i]])
-else:
-    geneticos_resolucion()
-
+opcion1=5
+while opcion1!="0":
+    opcion1 = input("Seleccione una opcion:\n1-Heuristico\n2-Algoritmos Geneticos\n0-Salir\n")
+    if (opcion1 == '1'):
+        opcion = input("Seleccione una opcion:\n1-Ingresar ciudad de salida\n2-Elegir ciudad aleatoria\n3-Obtener menor ruta\n")
+        if(opcion == '1'):
+            capitalini = input("ingrese el nombre de la ciudad de salida: ")
+            buscaRuta(capitalini, True)
+        elif(opcion == '2'):
+            capitalini = random.choice(capitales)
+            buscaRuta(capitalini, True)
+        elif(opcion == '3'):
+            dist_min = 999999999999999
+            for capital in capitales:
+                busqueda = buscaRuta(capital)
+                if(busqueda[0] < dist_min):
+                    dist_min = busqueda[0]
+                    recorrido = busqueda[1]
+            print("Distancia minima: ",dist_min)
+            print("Recorrido:\n")
+            for i in range(25):
+                print(capitales[recorrido[i]])
+    elif(opcion1=="2"):
+        opcion1 = input("Seleccione una opcion:\n1-Normal\n2-Elitismo")
+        if opcion1 == "1":
+            geneticos_resolucion()
+        elif opcion1 == "2":
+            geneticos_resolucion(True)
+        else:
+            break
